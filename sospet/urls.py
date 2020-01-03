@@ -19,5 +19,7 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.login_user)
+    path('login/', views.login_user),
+    path('login/submit', views.submit_login),
+    path('', views.index)
 ]
