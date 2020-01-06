@@ -1,0 +1,35 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+
+    <h1 class="text-center">Detalhes do Pet</h1>
+
+    <div class="">
+        <div class="row ml-4">
+            <div class="col-sm-4">
+                <div style="border-color: aqua; border-style: solid; width: 305px; height: 263px; margin-bottom: 30px;">
+                    <img src="{{pet.photo.url}}" width="300" height="260" style="">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <p>{{pet.description}}</p>
+                <h4>Contato</h4>
+                <p><b>Tel : </b>{{pet.phone}}</p>
+                <p><b>E-mail : </b>{{pet.email}}</p>
+                
+                {% if request.user == pet.user %}  
+                
+                    <a href="#">
+                        <button type="button" class="btn btn-primary">Alterar</button>
+                    </a>
+
+                    <button type="button" class="btn btn-danger">Deletar</button>
+            
+                {% endif %}
+            </div>
+
+        </divc>
+
+    </div>
+
+{% endblock %}
