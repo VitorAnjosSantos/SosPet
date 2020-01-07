@@ -26,7 +26,11 @@
             </div>
             
             <div class="form group" style="margin-top: 10px;">
-                
+                {% if pet %}
+                <a href="/media/{{pet.photo}}" target="_blank">
+                    <img src="{{pet.photo.url}}" width="200" height="200">
+                </a>                       
+                {% endif %}
                 
                 <input class="form-control-file border" name="file" type="file" accept="image/*">
             </div>
