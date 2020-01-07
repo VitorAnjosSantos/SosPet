@@ -12,6 +12,7 @@ urlpatterns = [
     path('pet/detall/<id>/', views.pet_detall),
     path('pet/register/', views.pet_register),
     path('pet/register/submit', views.set_pet),
+    path('pet/delete/<id>/', views.pet_delete),
     path('login/', views.login_user),
     path('login/submit', views.submit_login),
     path('logout/', views.logout_user),

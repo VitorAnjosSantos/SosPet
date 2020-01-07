@@ -22,6 +22,14 @@ def set_pet(request):
     return redirect(url)
 
 @login_required(login_url='/login/')
+def pet_delete(request,id):
+    pet = Pet.objects.get(id=id)
+    if pet.user == request.user:
+        pet.delete()
+    return redirect('/')
+
+
+@login_required(login_url='/login/')
 def list_all_pets(request):
     pet= Pet.objects.filter(active=True)
     return render(request, "list.html", {'pet':pet})
