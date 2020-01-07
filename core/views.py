@@ -7,6 +7,11 @@ from .models import Pet
 
 @login_required(login_url='/login/')
 def pet_register(request):
+    pet_id = request.GET.get('id')
+    if pet_id:
+        pet = Pet.objects.get(id=pet_id)
+        if pet.user == request.user:
+            return render(request, "register-pet.html", {'pet':pet})
     return render(request, 'register-pet.html')
 
 @login_required(login_url='/login/')
@@ -17,7 +22,21 @@ def set_pet(request):
     description = request.POST.get('description')
     photo = request.FILES.get('file')
     user = request.user
-    pet = Pet.objects.create(email= email,phone= phone, city= city, description= description, photo= photo, user= user )
+    pet_id = request.POST.get('pet-id')
+    
+    if pet_id:
+        pet = Pet.objects.get(id=pet_id)
+        if user == pet.user:
+            pet.email = email
+            pet.phone = phone
+            pet.city = city
+            pet.description = description
+            if photo:
+                pet.photo = photo
+            pet.save()
+    else:
+        pet = Pet.objects.create(email= email,phone= phone, city= city, description= description, photo= photo, user= user )
+    
     url = '/pet/detall/{}/'.format(pet.id)
     return redirect(url)
 

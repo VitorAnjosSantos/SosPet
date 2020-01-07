@@ -5,27 +5,41 @@
     <h1 class="text-center">Cadastrar Pet para adoção</h1>
 
 <form action="submit" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <input type="number" class="form-control" name="pet-id" value="{{ pet.id }}" hidden>
     <div class="container">
             <div class="form group">
                 <label for="email">E-mail</label>
-                <input class="form-control" name="email" type="text">
+                <input class="form-control" name="email" type="text" value="{{pet.email}}">
             </div>
             <div class="form group">
                 <label for="phone">Telefone</label>
-                <input class="form-control" name="phone" type="number">
+                <input class="form-control" name="phone" type="number" value="{{pet.phone}}">
             </div>
             <div class="form group">
                 <label for="city">Cidade</label>
-                <input class="form-control" name="city" type="text">
+                <input class="form-control" name="city" type="text" value="{{pet.city}}">
             </div>
             <div class="form group">
+                
                 <label for="description">Descrição</label>
-                <textarea class="form-control" name="description" rows="5"></textarea>
+                <textarea class="form-control" name="description" rows="5">{{pet.description}}</textarea>
             </div>
-            <div class="form group">
+            
+            <div class="form group" style="margin-top: 10px;">
+                
+                
                 <input class="form-control-file border" name="file" type="file" accept="image/*">
             </div>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <div class="text-center" style="margin-bottom: 10px;">
+                <button type="submit" class="btn btn-primary ">
+                 
+                    {% if pet %}
+                        Alterar
+                    {% else %}
+                        Cadastrar
+                    {% endif %}
+                </button>
+            </div>
     </div>
 </form>
 
